@@ -1,0 +1,43 @@
+# ChartModal 图表弹窗
+
+图表弹窗，让图表页面的内容在弹窗中显示。
+
+## 使用场景
+
+- 在 Table 上使用，以进行快速浏览
+
+- 不同模块之间的数据交叉分析
+
+## 示例
+
+```json
+{
+	"图表弹窗": {
+		"label": "图表弹窗",
+		"view": {
+			"type": "chartModal",
+			"props": {
+				"name": "log",
+				"value": ":created_at",
+				"format": "YYYY年MM月DD日 hh:mm:ss"
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps {
+	name: string
+}
+```
+
+## API
+
+| 属性   | 说明     | 类型   | 默认值 | 必填 | 版本 |
+| ------ | -------- | ------ | ------ | ---- | ---- |
+| name   | 图表名称 | string | -      | 是   |      |
+| value  | 文字     | string | -      | 是   |      |
+| format | 格式     | string | -      | 否   |      |

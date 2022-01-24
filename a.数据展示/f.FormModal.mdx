@@ -1,0 +1,48 @@
+# FormModal 表单弹窗
+
+表单弹窗，让表格页面的内容在弹窗中显示。
+
+## 使用场景
+
+- 在 Table 上使用，以进行快捷操作
+
+- 跨模块调用另一个模块的编辑功能
+
+## 示例
+
+```json
+{
+	"来源名称": {
+		"label": "来源",
+		"view": {
+			"type": "formModal",
+			"props": {
+				"type": "view",
+				"value": ":channel.name",
+				"formId": ":channel.id",
+				"formName": "channel"
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps {
+	type?: 'view' | 'edit'
+	value: string
+	formId: string
+	formName: string
+}
+```
+
+## API
+
+| 属性     | 说明        | 类型             | 默认值 | 必填 | 版本 |
+| -------- | ----------- | ---------------- | ------ | ---- | ---- |
+| type     | 表单类型    | 'view' \| 'edit' | -      | 否   |      |
+| value    | 文字        | string           | -      | 是   |      |
+| formId   | 表单关联 ID | string           | -      | 是   |      |
+| formName | 表单名称    | string           | -      | 是   |      |

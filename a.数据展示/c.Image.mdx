@@ -1,2 +1,41 @@
-# 规范
-test deploy
+# Image 图片
+
+图片，用于展示图像信息。
+
+## 使用场景
+
+- 用户头像
+
+- 商品图片
+
+## 示例
+
+```json
+{
+	"Label": {
+		"label": "图片",
+		"view": {
+			"type": "image",
+			"props": {
+				"value": ":avatar"
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps extends ImageProps {
+	value: string | Array<string>
+}
+```
+
+## API
+
+| 属性  | 说明 | 类型                      | 默认值 | 必填 | 版本 |
+| ----- | ---- | ------------------------- | ------ | ---- | ---- |
+| value | 图片路径 | string \| `Array<string>` | -      | 是   |      |
+
+其他属性见 [Antd Image](https://ant-design.gitee.io/components/image-cn/)

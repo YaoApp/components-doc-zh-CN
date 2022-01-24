@@ -1,2 +1,72 @@
-# 规范
-test deploy
+# Tag 标签
+
+标签，常用于展示带有特征变量的数据行。
+
+## 使用场景
+
+- 客户类型
+
+- 商品类型
+
+- 对象当前状态
+
+## 示例
+
+```json
+{
+	"状态": {
+		"label": "状态",
+		"view": {
+			"type": "tag",
+			"props": {
+				"value": ":status",
+				"options": [
+					{
+						"label": "开启",
+						"value": "enabled",
+						"color": "#41b883"
+					},
+					{
+						"label": "关闭",
+						"value": "disabled",
+						"color": "#f50"
+					}
+				]
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps extends TagProps {
+	value: string | Array<{ label: string; color?: string }>
+	options: Array<{ label: string; value: string | number; color?: string }>
+}
+```
+
+## API
+
+| 属性    | 说明       | 类型                                        | 默认值 | 必填 | 版本 |
+| ------- | ---------- | ------------------------------------------- | ------ | ---- | ---- |
+| value   | 文字       | string \| `Array<string>` \| `Array<Value>` | -      | 是   |      |
+| options | 可能的选项 | `Array<Option>`                             | -      | 否   |      |
+
+### Value
+
+| 属性  | 说明   | 类型   | 必填 |
+| ----- | ------ | ------ | ---- |
+| label | 文字   | string | 是   |
+| color | 背景色 | string | 否   |
+
+### Option
+
+| 属性  | 说明   | 类型             | 必填 |
+| ----- | ------ | ---------------- | ---- |
+| label | 文字   | string           | 是   |
+| value | 选项值 | string \| number | 是   |
+| color | 背景色 | string           | 否   |
+
+其他属性见 [Antd Tag](https://ant-design.gitee.io/components/tag-cn/)

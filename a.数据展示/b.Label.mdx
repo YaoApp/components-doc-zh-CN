@@ -1,2 +1,39 @@
-# 规范
-test deploy
+# Label 标签
+
+纯文本，仅用作展示。
+
+## 使用场景
+
+- 用户名
+
+- 字段描述
+
+## 示例
+
+```json
+{
+	"Label": {
+		"label": "文本",
+		"view": {
+			"type": "label",
+			"props": {
+				"value": ":name"
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps {
+	value: string | number
+}
+```
+
+## API
+
+| 属性  | 说明 | 类型   | 默认值 | 必填 | 版本 |
+| ----- | ---- | ------ | ------ | ---- | ---- |
+| value | 文字 | string | -      | 是   |      |
