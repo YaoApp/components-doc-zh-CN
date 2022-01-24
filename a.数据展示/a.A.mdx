@@ -1,2 +1,40 @@
-# 规范
-test deploy
+# A 链接
+
+点击链接，可跳转访问外部站点。
+
+## 示例
+
+<Notice type='warning'>注意：该组件作为a标签的扩展，其target属性为"_blank"，且不可变更。</Notice>
+
+```json
+{
+	"Link": {
+		"label": "外部链接",
+		"view": {
+			"type": "a",
+			"props": {
+				"value": ":link"
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps
+	extends React.DetailedHTMLProps<
+		React.AnchorHTMLAttributes<HTMLAnchorElement>,
+		HTMLAnchorElement
+	> {
+	value: string | undefined
+}
+```
+
+## API
+
+| 属性  | 说明 | 类型   | 默认值 | 必填 | 版本 |
+| ----- | ---- | ------ | ------ | ---- | ---- |
+| value | 文字 | string | -      | 是   |      |
+| href  | 链接 | string | -      | 否   |      |
