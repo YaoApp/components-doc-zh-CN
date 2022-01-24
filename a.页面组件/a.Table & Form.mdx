@@ -1,0 +1,334 @@
+# Table & Form 表格和表单
+
+表格，常用于呈现结构化数据列表；表单，用于单条数据的展示和编辑。
+
+## 使用场景
+
+- 展示数据库实体对象的数据行信息
+
+- 嵌入 Form，提供数据参考
+
+## 示例
+
+<Notice type='warning'>
+	注意：Table和Form组件既可作为页面使用，也可作为单独的组件使用，在使用方式和呈现上有所区别。
+</Notice>
+
+### 作为页面使用
+
+```json
+{
+	"name": "数据",
+	"version": "1.0.0",
+	"decription": "数据管理表格",
+	"bind": {
+		"model": "data",
+		"withs": { "device": {} }
+	},
+	"apis": {
+		"search": {
+			"default": [
+				{
+					"withs": { "device": {} },
+					"orders": [{ "column": "updated_at", "option": "desc" }]
+				},
+				null,
+				10
+			]
+		}
+	},
+	"columns": {
+		"数值": { "@": "column.TextArea", "in": ["数值", ":value.data", 4] },
+		"所属设备": { "@": "column.所属设备" },
+		"创建时间": { "@": "column.创建时间" },
+		"更新时间": { "@": "column.更新时间" }
+	},
+	"filters": {
+		"关键词": { "@": "filter.关键词", "in": ["where.key.match"] }
+	},
+	"list": {
+		"primary": "id",
+		"layout": {
+			"columns": [
+				{ "name": "ID", "width": 80 },
+				{ "name": "所属设备", "width": 100 },
+				{ "name": "键名", "width": 100 },
+				{ "name": "数值", "width": 200 },
+				{ "name": "更新时间", "width": 160 },
+				{ "name": "创建时间", "width": 160 }
+			],
+			"filters": [{ "name": "关键词" }]
+		},
+		"actions": {
+			"pagination": { "props": { "showTotal": true } }
+		},
+		"option": {}
+	},
+	"edit": {
+		"primary": "id",
+		"layout": {
+			"fieldset": [
+				{
+					"columns": [
+						{ "name": "所属设备", "width": 24 },
+						{ "name": "键名", "width": 24 },
+						{ "name": "数值", "width": 24 }
+					]
+				}
+			]
+		},
+		"actions": {
+			"cancel": {},
+			"save": { "@": "action.保存" },
+			"delete": { "@": "action.删除" }
+		}
+	}
+}
+```
+
+### 作为组件使用
+
+```json
+{
+	"关联服务": {
+		"label": "关联服务",
+		"edit": {
+			"type": "table",
+			"props": {
+				"name": "service",
+				"query": {
+					"id": ":id",
+					"name": ":manu.name"
+				}
+			}
+		}
+	}
+}
+```
+
+## Props
+
+### Columns
+
+```ts
+type BaseComponent = 'a' | 'label' | 'image' | 'tag' | 'tooltip' | 'chartModal' | 'formModal'
+type FormComponent =
+	| 'input'
+	| 'inputNumber'
+	| 'select'
+	| 'textArea'
+	| 'datePicker'
+	| 'rangePicker'
+	| 'mentions'
+	| 'upload'
+	| 'tree'
+	| 'treeSelect'
+	| 'checkbox'
+	| 'cascader'
+	| 'schedule'
+	| 'dynamicList'
+	| 'conditionList'
+	| 'conditionForm'
+
+interface Columns {
+	[key: string]: {
+		label: string
+		view: {
+			type: BaseComponent
+			props: { [key: string]: any }
+		}
+		edit: {
+			type: FormComponent
+			props: { [key: string]: any }
+		}
+	}
+}
+```
+
+### List
+
+```ts
+interface List {
+	// 主键
+	primary: string
+	// 页面布局
+	layout: {
+		// table布局信息
+		columns: Array<{
+			// 组件名称
+			name: string
+			// 列宽度，固定宽度
+			width?: number
+		}>
+		// filters布局信息
+		filters: Array<{
+			// 组件名称
+			name: string
+			// 列宽度，24栅格
+			width?: number
+		}>
+	}
+	actions?: {
+		// 是否显示分页导航
+		pagination?: {
+			props?: {
+				// 是否显示全部条数的提示
+				showTotal?: boolean
+			}
+		}
+	}
+	option?: {
+		// 支持批量修改
+		batch?: {
+			// 是否支持批量删除
+			delete: any
+			// 数据项
+			columns: Array<{
+				name: string
+				width?: number
+			}>
+		}
+		// 自定义table操作项
+		operation?: {
+			// 隐藏默认查看按钮
+			hideView?: boolean
+			// 隐藏默认编辑按钮
+			hideEdit?: boolean
+			// 展开操作项
+			unfold?: boolean
+			// 操作项这一列的宽度
+			width?: number
+			// 开启table内容滚动
+			scroll?: {
+				x: number
+			}
+			// checkbox选项按钮
+			checkbox?: Array<{
+				// 绑定的值
+				value: string
+				// label是否展示
+				visible_label?: boolean
+				// 状态列表
+				status: Array<{
+					label: string
+					value: string | number
+				}>
+			}>
+			// 自定义操作列表
+			items?: Array<{
+				// 使用弹窗打开
+				useModal?: boolean
+				// Form状态
+				type?: 'view' | 'edit'
+				// 操作名称
+				title: string
+				// 图标，参考 Icon 组件
+				icon: string
+				// 关联表单名称
+				formName: string
+				// 关联表单ID
+				formId: string
+			}>
+		}
+	}
+}
+```
+
+### Form
+
+```ts
+interface Tab {
+	tab: boolean
+	items: Array<{
+		// tab标题
+		name: string
+		columns: {
+			// 组件名称
+			name: string
+			// 列宽度，固定宽度
+			width?: number
+		}
+	}>
+}
+
+interface Form {
+	// 主键
+	primary: string
+	// 页面布局
+	layout: {
+		// 小节
+		fieldset: Array<{
+			// 标题
+			title: string
+			// 描述
+			description: string
+			// 布局，支持tab
+			columns: Array<
+				| {
+						// 组件名称
+						name: string
+						// 列宽度，固定宽度
+						width?: number
+				  }
+				| Tab
+			>
+		}>
+	}
+	// 支持的操作
+	actions: {
+		cancel: any
+		save: {
+			type: 'button'
+			props: {
+				label: string
+			}
+		}
+		delete: {
+			type: 'button'
+			props: {
+				label: string
+			}
+		}
+	}
+	//自定义操作
+	option?: {
+		// 开启dev模式，点击保存之后不回返回到列表页
+		dev?: boolean
+		operation?: Array<
+			// 调用制定api
+			| {
+					title: string
+					icon: string
+					api: string
+					type?: 'success' | 'warning' | 'danger'
+					confirm?: boolean
+					disabled?: string
+					data: { [key: string]: string }
+			  }
+			// 打开新的链接
+			| {
+					title: string
+					icon: string
+					link?: string
+					data: { [key: string]: string }
+			  }
+		>
+	}
+}
+```
+
+## API
+
+### 作为页面使用
+
+| 属性       | 说明           | 类型                | 默认值 | 必填 | 版本 |
+| ---------- | -------------- | ------------------- | ------ | ---- | ---- |
+| name       | 页面标题       | string              | -      | 是   |      |
+| version    | 版本           | string              | -      | 否   |      |
+| decription | 页面描述       | string              | -      | 否   |      |
+| bind       | 数据绑定       | [Bind](/)           | -      | 是   |      |
+| apis       | 数据接口       | [Api](/)            | -      | 是   |      |
+| columns    | 页面相关组件   | [Columns](#Columns) | -      | 是   |      |
+| filters    | 筛选栏相关组件 | [Columns](#Columns) | -      | 是   |      |
+| list       | 表格页面描述   | [List](#List)       | -      | 是   |      |
+| edit       | 表单页面描述   | [Form](#Form)       | -      | 是   |      |
