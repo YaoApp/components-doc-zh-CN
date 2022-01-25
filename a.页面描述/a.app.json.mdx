@@ -1,0 +1,110 @@
+# app.json 应用描述
+
+应用相关信息的描述，包括应用 logo、页面标题、登录跳转路口等关键信息。
+
+## 示例
+
+<Notice type='warning'>
+	注意：在构建应用时，app.json应是首先定义的，因为它包含了许多让应用界面得以运行的先决条件。
+</Notice>
+
+```json
+{
+	"name": "象传应用",
+	"short": "象传",
+	"description": "象传应用后台",
+	"plugins": {
+		"feishu": {
+			"comment": "尚未启用(暂时忽略)",
+			"appid": "",
+			"secret": "",
+			"subscribe": {},
+			"sync": {}
+		}
+	},
+	"storage": {
+		"default": "oss",
+		"oss": {
+			"comment": "https://www.alibabacloud.com/help/zh/doc-detail/100624.htm",
+			"endpoint": "oss-cn-hangzhou.aliyuncs.com",
+			"id": "",
+			"secret": "",
+			"roleArn": "",
+			"sessionName": ""
+		}
+	},
+	"option": {
+		"nav_user": "xiang.user",
+		"nav_menu": "menu",
+		"hide_user": true,
+		"hide_menu": true,
+		"login": {
+			"image": {
+				"admin": "/extend/undraw_movie_night_re_9umk.svg",
+				"user": "/extend/undraw_pie_graph_re_fvol.svg"
+			},
+			"entry": {
+				"admin": "/kanban/kanban.index",
+				"user": "/table/service"
+			},
+			"password": {
+				"captcha": "/api/xiang/user/captcha",
+				"login": "/api/user/login"
+			},
+			"feishu": {
+				"authUrl": "/api/feishu/auth/url",
+				"login": "/api/feishu/login"
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps {
+	// 应用名称
+	name: string
+	// 应用缩写名
+	short?: string
+	// 应用描述
+	description?: string
+	// 应用插件，参考 Yao 对于 Plugins 的定义
+	plugins?: Plugins
+	// 使用第三方存储设置，参考 Yao 对于 Storage 的定义
+	storage?: Storage
+	option: {
+		login: {
+			// 配置管理员、用户登录之后的跳转页面
+			entry: {
+				admin: string
+				user: string
+			}
+			// 配置管理员、用户登录页面的插画
+			image?: {
+				admin: string
+				user: string
+			}
+			// 配置登录相关接口
+			password?: {
+				captcha: string
+				login: string
+			}
+			// 显示并配置飞书登录接口
+			feishu?: {
+				authUrl: '/api/feishu/auth/url'
+				login: '/api/feishu/login'
+			}
+		}
+		// 自定义user模块，默认为 xiang.user
+		nav_user?: 'user'
+		// 自定义menu模块，默认为 xiang.menu
+		nav_menu: 'menu'
+		// 隐藏导航栏 user 功能按钮
+		hide_user?: true
+		// 隐藏导航栏 menu 功能按钮
+		hide_menu?: true
+	}
+}
+```
