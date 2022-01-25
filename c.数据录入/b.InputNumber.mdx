@@ -12,8 +12,8 @@
 
 ```json
 {
-	"额度": {
-		"label": "额度",
+	"InputNumber": {
+		"label": "InputNumber",
 		"edit": {
 			"type": "inputNumber",
 			"props": {
@@ -30,7 +30,6 @@
 ```ts
 interface IProps extends InputNumberProps {
 	value: string
-	label?: string
 }
 ```
 
@@ -39,6 +38,5 @@ interface IProps extends InputNumberProps {
 | 属性  | 说明     | 类型   | 默认值 | 必填 | 版本 |
 | ----- | -------- | ------ | ------ | ---- | ---- |
 | value | 绑定值   | string | -      | 是   |      |
-| label | 字段标题 | string | -      | 否   |      |
 
 其他属性见 [Antd InputNumber](https://ant-design.gitee.io/components/input-number-cn/)

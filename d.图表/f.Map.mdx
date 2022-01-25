@@ -1,2 +1,47 @@
-# 规范
-test deploy
+# Map 地图
+
+地图组件，通常用于大屏中心位置，用来展示一些实时的地理位置相关的数据。
+
+## 使用场景
+
+- 春运人口流动趋势。
+
+- 国内航空交通人员流动趋势。
+
+## 示例
+
+```json
+{
+	"name": "云厂商分布",
+	"width": 12,
+	"height": 8,
+	"type": "map",
+	"props": {
+		"series": [
+			{
+				"name": "location",
+				"type": "map",
+				"map": "china"
+			}
+		]
+	}
+}
+```
+
+## Props
+
+```ts
+export interface IProps {
+	name: string
+	height: number
+}
+```
+
+## API
+
+| 属性   | 说明     | 类型   | 默认值 | 必填 | 版本 |
+| ------ | -------- | ------ | ------ | ---- | ---- |
+| name   | 数据 key | string | -      | 是   |      |
+| height | 高度     | string | -      | 是   |      |
+
+更多属性见 [Echarts Map](https://echarts.apache.org/examples/zh/index.html#chart-type-map)

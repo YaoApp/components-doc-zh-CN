@@ -1,0 +1,62 @@
+# Import 数据导入
+
+数据导入，用于导入 Excel、CSV 文件。
+
+## 示例
+
+<Notice type='success'>
+	注意：导入仅在table页面的JSON中定义有效，数据导入的过程中支持对数据进行清洗。
+</Notice>
+
+tables/[*].json `list.actions`
+
+```json
+{
+	"actions": {
+		"import": {
+			"props": {
+				"api": {
+					"setting": "/api/xiang/import/order/setting",
+					"mapping": "/api/xiang/import/order/mapping",
+					"mapping_setting": "/api/xiang/import/order/mapping/setting",
+					"preview": "/api/xiang/import/order/data",
+					"preview_setting": "/api/xiang/import/order/data/setting",
+					"import": "/api/xiang/import/order"
+				}
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+export interface IProps {
+	api: {
+		setting: string
+		mapping: string
+		mapping_setting: string
+		preview: string
+		preview_setting: string
+		import: string
+	}
+}
+```
+
+## API
+
+| 属性 | 说明 | 类型        | 默认值 | 必填 | 版本 |
+| ---- | ---- | ----------- | ------ | ---- | ---- |
+| api  | 接口 | [api](#api) | -      | 是   |      |
+
+### api
+
+| 属性            | 说明                  | 类型   | 必填 |
+| --------------- | --------------------- | ------ | ---- |
+| setting         | setting 接口          | string | 是   |
+| mapping         | 字段映射获取数据接口  | string | 是   |
+| mapping_setting | 字段映射 setting 接口 | string | 是   |
+| preview         | 数据预览数据接口      | string | 是   |
+| preview_setting | 数据预览 setting 接口 | string | 是   |
+| import          | 导入接口              | string | 是   |

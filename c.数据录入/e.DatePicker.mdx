@@ -6,19 +6,18 @@
 
 - 当用户需要输入一个日期，可以点击标准输入框，弹出日期面板进行选择。
 
-- 展示或编辑进行营销活动时的截止日期
+- 展示或编辑营销等活动的截止日期
 
 ## 示例
 
 ```json
 {
-	"额度": {
-		"label": "额度",
+	"DatePicker": {
+		"label": "DatePicker",
 		"edit": {
-			"type": "inputNumber",
+			"type": "datePicker",
 			"props": {
-				"value": ":amount",
-				"placeholder": "请输入额度"
+				"value": ":expired_at"
 			}
 		}
 	}
@@ -28,17 +27,17 @@
 ## Props
 
 ```ts
-interface IProps extends InputNumberProps {
+type IProps = DatePickerProps & {
 	value: string
-	label?: string
+	format?: string
 }
 ```
 
 ## API
 
-| 属性  | 说明     | 类型   | 默认值 | 必填 | 版本 |
-| ----- | -------- | ------ | ------ | ---- | ---- |
-| value | 绑定值   | string | -      | 是   |      |
-| label | 字段标题 | string | -      | 否   |      |
+| 属性   | 说明   | 类型   | 默认值 | 必填 | 版本 |
+| ------ | ------ | ------ | ------ | ---- | ---- |
+| value  | 绑定值 | string | -      | 是   |      |
+| format | 格式   | string | -      | 否   |      |
 
-其他属性见 [Antd InputNumber](https://ant-design.gitee.io/components/input-number-cn/)
+其他属性见 [Antd DatePicker](https://ant-design.gitee.io/components/datepicker-cn/)

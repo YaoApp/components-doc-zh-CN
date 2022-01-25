@@ -1,2 +1,161 @@
-# 规范
-test deploy
+# ConditionList 条件列表
+
+条件列表，支持在 Form 中对指定类型数据列表做 CURD 操作并支持联动。
+
+## 示例
+
+<Notice type='warning'>注意：条件列表需要配合特定的setting来使用。</Notice>
+
+```json
+{
+	"ConditionList": {
+		"label": "ConditionList",
+		"edit": {
+			"type": "conditionList",
+			"props": {
+				"setting": "survey",
+				"value": ":survey",
+				"query": {
+					"sort": "$index"
+				}
+			}
+		}
+	}
+}
+```
+
+/api/xiang/setting/survey
+
+```json
+{
+	"label": "问卷调查配置",
+	"version": "1.0.0",
+	"description": "问卷调查配置",
+	"nodes": [],
+	"output": {
+		"options": {
+			"单选": {
+				"one_row": false,
+				"columns": [
+					{
+						"type": "input",
+						"width": 19,
+						"props": {
+							"value": ":text",
+							"placeholder": "请输入选项内容"
+						}
+					},
+					{
+						"type": "label",
+						"width": 1,
+						"props": {
+							"value": "每"
+						}
+					},
+					{
+						"type": "inputNumber",
+						"width": 4,
+						"props": {
+							"value": ":score",
+							"min": 0,
+							"max": 100,
+							"placeholder": "请输入得分"
+						}
+					}
+				]
+			},
+			"多选": {
+				"one_row": false,
+				"columns": [
+					{
+						"type": "input",
+						"width": 20,
+						"props": {
+							"value": ":text",
+							"placeholder": "请输入选项内容"
+						}
+					},
+					{
+						"type": "inputNumber",
+						"width": 4,
+						"props": {
+							"value": ":score",
+							"min": 0,
+							"max": 100,
+							"placeholder": "请输入得分"
+						}
+					}
+				]
+			},
+			"时间": {
+				"one_row": true,
+				"columns": []
+			},
+			"数字": {
+				"one_row": true,
+				"columns": [
+					{
+						"type": "inputNumber",
+						"width": 12,
+						"props": {
+							"value": ":min",
+							"min": 0,
+							"placeholder": "最小值，不限定留空"
+						}
+					},
+					{
+						"type": "inputNumber",
+						"width": 12,
+						"props": {
+							"value": ":max",
+							"min": 0,
+							"placeholder": "最小值，不限定留空"
+						}
+					}
+				]
+			},
+			"文本": {
+				"one_row": true,
+				"columns": [
+					{
+						"type": "inputNumber",
+						"width": 12,
+						"props": {
+							"value": ":minLength",
+							"min": 0,
+							"placeholder": "最小长度，不限定留空"
+						}
+					},
+					{
+						"type": "inputNumber",
+						"width": 12,
+						"props": {
+							"value": ":maxLength",
+							"min": 0,
+							"placeholder": "最小长度，不限定留空"
+						}
+					}
+				]
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps extends InputProps {
+	value: string
+	setting: string
+	query?: { [key: string]: string }
+}
+```
+
+## API
+
+| 属性    | 说明                                         | 类型            | 默认值 | 必填 | 版本 |
+| ------- | -------------------------------------------- | --------------- | ------ | ---- | ---- |
+| value   | 绑定值                                       | string          | -      | 是   |      |
+| setting | setting 名称                                 | string          | -      | 是   |      |
+| query   | 提交参数，将会在提交数据时原样整合到 data 中 | IProps['query'] | -      | 否   |      |

@@ -1,33 +1,37 @@
-# TreeSelect 树形选择框
+# CheckboxGroup 多选框
 
-树型选择控件。
+多选框组。
 
 ## 使用场景
 
-类似 Select 的选择控件，可选择的数据结构是一个树形结构时，可以使用 TreeSelect，例如公司层级、学科系统、分类目录等等。
+- 在一组可选项中进行多项选择时。
 
-- 选择公司部门。
-
-- 选择指定类目。
+- 代替 Select 组件，直接展示选项。
 
 ## 示例
 
 ```json
 {
-	"TreeSelect": {
-		"label": "TreeSelect",
+	"CheckboxGroup": {
+		"label": "CheckboxGroup",
 		"edit": {
-			"type": "treeSelect",
+			"type": "checkboxGroup",
 			"props": {
-				"value": ":treeSelect",
-				"allowClear": true,
-				"multiple": true,
-				"remote": {
-					"api": "/api/tree/search",
-					"query": {
-						"select": ["id", "name"]
+				"value": ":checkboxGroup",
+				"options": [
+					{
+						"label": "Apple",
+						"value": 1
+					},
+					{
+						"label": "Pear",
+						"value": 2
+					},
+					{
+						"label": "Orange",
+						"value": 3
 					}
-				}
+				]
 			}
 		}
 	}
@@ -38,13 +42,9 @@
 
 ```ts
 interface Option {
-	key: string
-	title: string
-	children: Array<Option>
+	label: string
+	value: string
 	disabled?: boolean
-	disableCheckbox?: boolean
-	selectable?: boolean
-	checkable?: boolean
 }
 
 interface IProps extends TreeProps {
@@ -73,4 +73,4 @@ interface IProps extends TreeProps {
 | api   | 接口 | string                    | 是   |
 | query | 接口 | IProps['remote']['query'] | 否   |
 
-其他属性见 [Antd TreeSelect](https://ant-design.gitee.io/components/tree-select-cn/)
+其他属性见 [Antd CheckboxGroup](https://ant-design.gitee.io/components/checkbox-cn/#Checkbox-Group)

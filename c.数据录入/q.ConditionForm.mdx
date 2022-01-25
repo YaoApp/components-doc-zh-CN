@@ -1,2 +1,47 @@
-# 规范
-test deploy
+# ConditionForm 条件列表表单
+
+条件列表表单，消费 ConditionList 产出的结构化数据。
+
+## 使用场景
+
+- 每日食用菜谱的填写。
+
+- 日常活动列表的填写。
+
+## 示例
+
+<Notice type='warning'>注意：条件列表表单的setting需要通过编写特定JSON flow来获取。</Notice>
+
+```json
+{
+	"ConditionForm": {
+		"label": "ConditionForm",
+		"edit": {
+			"type": "conditionForm",
+			"props": {
+				"value": ":survey_result",
+				"api": "/api/survey/setting/survey_result",
+				"id": ":id"
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps extends InputProps {
+	value: string
+	api: string
+	id: string
+}
+```
+
+## API
+
+| 属性  | 说明             | 类型   | 默认值 | 必填 | 版本 |
+| ----- | ---------------- | ------ | ------ | ---- | ---- |
+| value | 绑定值           | string | -      | 是   |      |
+| api   | setting 接口     | string | -      | 是   |      |
+| id    | 关联的 form 变量 | string | -      | 是   |      |

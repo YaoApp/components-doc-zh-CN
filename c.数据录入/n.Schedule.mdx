@@ -1,2 +1,138 @@
-# 规范
-test deploy
+# Schedule 日程表
+
+日程表，通常用来录入或呈现一些与日程相关的信息。
+
+## 使用场景
+
+- 每日食用菜谱。
+
+- 日常活动列表。
+
+## 示例
+
+<Notice type='warning'>注意：日程表需要配合特定的setting来使用。</Notice>
+
+```json
+{
+	"Schedule": {
+		"label": "Schedule",
+		"edit": {
+			"type": "schedule",
+			"props": {
+				"value": ":schedule",
+				"api": "/api/xiang/setting/schedule",
+				"id": ":id"
+			}
+		}
+	}
+}
+```
+
+/api/xiang/setting/schedule:
+
+```json
+{
+	"label": "配置",
+	"version": "1.0.0",
+	"description": "配置",
+	"nodes": [],
+	"output": {
+		"days": ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+		"cell": [
+			{
+				"label": "菜谱",
+				"type": "select",
+				"width": 200,
+				"props": {
+					"value": ":name",
+					"showSearch": true,
+					"remote": {
+						"api": "/api/kind/get",
+						"query": {}
+					}
+				}
+			},
+			{
+				"label": "量",
+				"type": "inputNumber",
+				"width": 80,
+				"prefix": "X",
+				"after": "份",
+				"props": {
+					"value": ":weight",
+					"step": 10,
+					"min": 0,
+					"placeholder": "数量"
+				}
+			}
+		],
+		"rows": [
+			{
+				"title": "早",
+				"children": [
+					{
+						"title": "小荤"
+					},
+					{
+						"title": "素"
+					}
+				]
+			},
+			{
+				"title": "中",
+				"children": [
+					{
+						"title": "大荤",
+						"rows": 2
+					},
+					{
+						"title": "小荤"
+					},
+					{
+						"title": "素"
+					},
+					{
+						"title": "主食"
+					}
+				]
+			},
+			{
+				"title": "晚",
+				"children": [
+					{
+						"title": "大荤",
+						"rows": 2
+					},
+					{
+						"title": "小荤"
+					},
+					{
+						"title": "素"
+					},
+					{
+						"title": "主食"
+					}
+				]
+			}
+		]
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps extends InputProps {
+	value: string
+      api: string
+	id: string
+}
+```
+
+## API
+
+| 属性  | 说明             | 类型   | 默认值 | 必填 | 版本 |
+| ----- | ---------------- | ------ | ------ | ---- | ---- |
+| value | 绑定值           | string | -      | 是   |      |
+| api   | setting 接口     | string | -      | 是   |      |
+| id    | 关联的 form 变量 | string | -      | 是   |      |

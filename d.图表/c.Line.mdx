@@ -1,2 +1,75 @@
-# 规范
-test deploy
+# Line 折线图
+
+折线图组件，用来表示连续性的数据。
+
+## 使用场景
+
+- 企业销售额历史趋势。
+
+- 人口增长曲线。
+
+## 示例
+
+```json
+{
+	"name": "云厂商积分",
+	"width": 6,
+	"height": 4,
+	"type": "line",
+	"props": {
+		"height": "100%",
+		"x_key": "name",
+		"axisLabel": {
+			"interval": 0,
+			"rotate": 30,
+			"textStyle": {
+				"fontSize": 12
+			}
+		},
+		"series": [
+			{
+				"name": "score",
+				"type": "line",
+				"smooth": true,
+				"symbolSize": 8,
+				"areaStyle": {},
+				"splitLine": {
+					"show": false
+				},
+				"axisLabel": {
+					"show": false
+				},
+				"color": "#7bf9af"
+			}
+		]
+	}
+}
+```
+
+## Props
+
+```ts
+export interface IProps {
+	name: string
+	height: number
+	x_key: string
+	vertical: boolean
+	textLength: number
+	textWrap: boolean
+	hide_label: boolean
+}
+```
+
+## API
+
+| 属性       | 说明                 | 类型   | 默认值 | 必填 | 版本 |
+| ---------- | -------------------- | ------ | ------ | ---- | ---- |
+| name       | 数据 key             | string | -      | 是   |      |
+| height     | 高度                 | string | -      | 是   |      |
+| x_key      | 横坐标 key           | string | -      | 是   |      |
+| vertical   | 是否纵向显示         | string | -      | 否   |      |
+| textLength | 文字长度限制         | string | -      | 否   |      |
+| textWrap   | 文字超过长度是否换行 | string | -      | 否   |      |
+| hide_label | 隐藏标题             | string | -      | 否   |      |
+
+更多属性见 [Echarts Line](https://echarts.apache.org/examples/zh/index.html#chart-type-line)

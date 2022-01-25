@@ -1,2 +1,52 @@
-# 规范
-test deploy
+# Pie 饼图
+
+饼图，通常用来数据占比。
+
+## 使用场景
+
+- 销售额不同部分的占比。
+
+- 人口男女比例。
+
+## 示例
+
+```json
+{
+	"name": "行业分布",
+	"width": 9,
+	"type": "pie",
+	"props": {
+		"x_key": "name",
+		"series": [
+			{
+				"name": "数量",
+				"type": "pie",
+				"roseType": "area",
+				"itemStyle": {
+					"borderRadius": 3
+				}
+			}
+		]
+	}
+}
+```
+
+## Props
+
+```ts
+export interface IProps {
+	name: string
+	height: number
+	hide_label: boolean
+}
+```
+
+## API
+
+| 属性       | 说明     | 类型   | 默认值 | 必填 | 版本 |
+| ---------- | -------- | ------ | ------ | ---- | ---- |
+| name       | 数据 key | string | -      | 是   |      |
+| height     | 高度     | string | -      | 是   |      |
+| hide_label | 隐藏标题 | string | -      | 否   |      |
+
+更多属性见 [Echarts Pie](https://echarts.apache.org/examples/zh/index.html#chart-type-pie)

@@ -1,29 +1,29 @@
-# TreeSelect 树形选择框
+# Cascader 级联选择
 
-树型选择控件。
+级联选择框。
 
 ## 使用场景
 
-类似 Select 的选择控件，可选择的数据结构是一个树形结构时，可以使用 TreeSelect，例如公司层级、学科系统、分类目录等等。
+- 需要从一组相关联的数据集合进行选择，例如省市区，公司层级，事物分类等。
 
-- 选择公司部门。
+- 从一个较大的数据集合中进行选择时，用多级分类进行分隔，方便选择。
 
-- 选择指定类目。
+- 比起 Select 组件，可以在同一个浮层中完成选择，有较好的体验。
 
 ## 示例
 
 ```json
 {
-	"TreeSelect": {
-		"label": "TreeSelect",
+	"Cascader": {
+		"label": "Cascader",
 		"edit": {
-			"type": "treeSelect",
+			"type": "cascader",
 			"props": {
-				"value": ":treeSelect",
-				"allowClear": true,
-				"multiple": true,
+				"value": ":cascader",
+				"showSearch": true,
+				"placeholder": "请选择所属厂商",
 				"remote": {
-					"api": "/api/tree/search",
+					"api": "/api/cascader/search",
 					"query": {
 						"select": ["id", "name"]
 					}
@@ -38,13 +38,10 @@
 
 ```ts
 interface Option {
-	key: string
-	title: string
-	children: Array<Option>
+	value: string | number
+	label?: React.ReactNode
 	disabled?: boolean
-	disableCheckbox?: boolean
-	selectable?: boolean
-	checkable?: boolean
+	children?: Array<Option>
 }
 
 interface IProps extends TreeProps {
@@ -73,4 +70,4 @@ interface IProps extends TreeProps {
 | api   | 接口 | string                    | 是   |
 | query | 接口 | IProps['remote']['query'] | 否   |
 
-其他属性见 [Antd TreeSelect](https://ant-design.gitee.io/components/tree-select-cn/)
+其他属性见 [Antd Cascader](https://ant-design.gitee.io/components/cascader-cn/)

@@ -1,2 +1,50 @@
-# 规范
-test deploy
+# Upload 上传
+
+文件选择上传和拖拽上传控件。
+
+## 使用场景
+
+上传是将信息（网页、文字、图片、视频等）通过网页或者上传工具发布到远程服务器上的过程。
+
+- 当需要上传一个或一些文件时。
+
+- 当需要使用拖拽交互时。
+
+## 示例
+
+```json
+{
+	"Upload": {
+		"label": "Upload",
+		"edit": {
+			"type": "upload",
+			"props": {
+				"value": ":images",
+				"filetype": "image",
+				"multiple": true,
+				"maxCount": 1
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps extends UploadProps {
+	value: Array<string>
+	filetype: 'image' | 'file' | 'video'
+	desc?: string
+}
+```
+
+## API
+
+| 属性     | 说明               | 类型   | 默认值 | 必填 | 版本 |
+| -------- | ------------------ | ------ | ------ | ---- | ---- |
+| value    | 绑定值             | string | -      | 是   |      |
+| filetype | IProps['filetype'] | string | -      | 是   |      |
+| desc     | 文字描述           | string | -      | 否   |      |
+
+其他属性见 [Antd Upload](https://ant-design.gitee.io/components/upload-cn/)

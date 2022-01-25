@@ -1,2 +1,65 @@
-# 规范
-test deploy
+# NumberCard 数字卡片
+
+数字卡片，通常用来展示关键性的指标信息。
+
+## 示例
+
+<Notice type='warning'>
+	注意：Chart相关的组件支持在Chart、Kanban、Screen页面的setting中使用，也支持在Form中使用，写法上会有所不同。
+</Notice>
+
+### 在图表页使用
+
+```json
+{
+	"name": "云计算相关企业",
+	"width": 6,
+	"type": "numberCard",
+	"props": {
+		"icon": "cloud-outline",
+		"unit": "家"
+	}
+}
+```
+
+### 在表单页使用
+
+```json
+{
+	"表格图表": {
+		"label": "表格图表",
+		"edit": {
+			"type": "chart",
+			"props": {
+				"type": "numberCard",
+				"value": ":service",
+				"hide_label": true,
+				"chart_props": {
+					"height": 240,
+					"icon": "cloud-outline",
+					"unit": "家"
+				}
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps {
+	name: string
+	icon: string
+	unit?: string
+}
+```
+
+## API
+
+| 属性  | 说明     | 类型   | 默认值 | 必填 | 版本 |
+| ----- | -------- | ------ | ------ | ---- | ---- |
+| name  | 数据 key | string | -      | 是   |      |
+| width | 栅格格数 | string | -      | 是   |      |
+| icon  | 图标     | string | -      | 是   |      |
+| unit  | 单位     | string | -      | 否   |      |

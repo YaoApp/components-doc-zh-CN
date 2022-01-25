@@ -12,8 +12,8 @@
 
 ```json
 {
-	"服务类型": {
-		"label": "服务类型",
+	"Select": {
+		"label": "Select",
 		"edit": {
 			"type": "select",
 			"props": {
@@ -38,7 +38,6 @@
 ```ts
 interface IProps extends SelectProps<any> {
 	value: string
-	label?: string
 	string?: '1' | '0' | undefined
 	options?: Array<{ label: string; value: string | number }>
 	remote?: {
@@ -62,7 +61,6 @@ interface IProps extends SelectProps<any> {
 | 属性    | 说明                     | 类型                     | 默认值 | 必填 | 版本 |
 | ------- | ------------------------ | ------------------------ | ------ | ---- | ---- |
 | value   | 绑定值                   | string                   | -      | 是   |      |
-| label   | 字段标题                 | string                   | -      | 否   |      |
 | string  | 是否转换 value 为 string | string                   | -      | 否   |      |
 | options | 选项列表                 | Array<[Option](#Option)> | -      | 否   |      |
 | remote  | 远程选项列表             | [Remote](#Remote)        | -      | 否   |      |
@@ -77,10 +75,10 @@ interface IProps extends SelectProps<any> {
 
 ### Remote
 
-| 属性  | 说明 | 类型                | 必填 |
-| ----- | ---- | ------------------- | ---- |
-| api   | 接口 | string              | 是   |
-| query | 接口 | IProps.remote.query | 否   |
+| 属性  | 说明 | 类型                      | 必填 |
+| ----- | ---- | ------------------------- | ---- |
+| api   | 接口 | string                    | 是   |
+| query | 接口 | IProps['remote']['query'] | 否   |
 
 ### Search
 
