@@ -1,2 +1,92 @@
-# 规范
-test deploy
+# Select 选择器
+
+下拉选择器，为 html5 select 的功能增强型组件。
+
+## 使用场景
+
+- 弹出一个下拉菜单给用户选择操作，用于代替原生的选择器，或者需要一个更优雅的多选器时。
+
+- 当选项少时（少于 5 项），建议直接将选项平铺，使用 Radio 是更好的选择。
+
+## 示例
+
+```json
+{
+	"服务类型": {
+		"label": "服务类型",
+		"edit": {
+			"type": "select",
+			"props": {
+				"value": ":kind.id",
+				"tree": true,
+				"searchable": true,
+				"remote": {
+					"api": "/api/kind/tree",
+					"query": {
+						"select": ["id", "name"],
+						"keyword": "where_name_like"
+					}
+				}
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps extends SelectProps<any> {
+	value: string
+	label?: string
+	string?: '1' | '0' | undefined
+	options?: Array<{ label: string; value: string | number }>
+	remote?: {
+		api: string
+		query: {
+			// 是否使用value作为query参数
+			useValue?: boolean
+			// 选择需要返回的字段
+			select?: Array<string>
+		}
+	}
+	search?: {
+		api: string
+		key: string
+	}
+}
+```
+
+## API
+
+| 属性    | 说明                     | 类型                     | 默认值 | 必填 | 版本 |
+| ------- | ------------------------ | ------------------------ | ------ | ---- | ---- |
+| value   | 绑定值                   | string                   | -      | 是   |      |
+| label   | 字段标题                 | string                   | -      | 否   |      |
+| string  | 是否转换 value 为 string | string                   | -      | 否   |      |
+| options | 选项列表                 | Array<[Option](#Option)> | -      | 否   |      |
+| remote  | 远程选项列表             | [Remote](#Remote)        | -      | 否   |      |
+| search  | 远程搜索                 | [Search](#Search)        | -      | 否   |      |
+
+### Option
+
+| 属性  | 说明 | 类型             | 必填 |
+| ----- | ---- | ---------------- | ---- |
+| label | 文字 | string           | 是   |
+| value | 值   | string \| number | 是   |
+
+### Remote
+
+| 属性  | 说明 | 类型                | 必填 |
+| ----- | ---- | ------------------- | ---- |
+| api   | 接口 | string              | 是   |
+| query | 接口 | IProps.remote.query | 否   |
+
+### Search
+
+| 属性 | 说明           | 类型   | 必填 |
+| ---- | -------------- | ------ | ---- |
+| api  | 接口           | string | 是   |
+| key  | 查询参数的 key | string | 是   |
+
+其他属性见 [Antd Select](https://ant-design.gitee.io/components/select-cn/)

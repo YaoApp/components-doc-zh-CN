@@ -1,2 +1,44 @@
-# 规范
-test deploy
+# DatePicker 日期选择框
+
+输入或选择日期的控件。
+
+## 使用场景
+
+- 当用户需要输入一个日期，可以点击标准输入框，弹出日期面板进行选择。
+
+- 展示或编辑进行营销活动时的截止日期
+
+## 示例
+
+```json
+{
+	"额度": {
+		"label": "额度",
+		"edit": {
+			"type": "inputNumber",
+			"props": {
+				"value": ":amount",
+				"placeholder": "请输入额度"
+			}
+		}
+	}
+}
+```
+
+## Props
+
+```ts
+interface IProps extends InputNumberProps {
+	value: string
+	label?: string
+}
+```
+
+## API
+
+| 属性  | 说明     | 类型   | 默认值 | 必填 | 版本 |
+| ----- | -------- | ------ | ------ | ---- | ---- |
+| value | 绑定值   | string | -      | 是   |      |
+| label | 字段标题 | string | -      | 否   |      |
+
+其他属性见 [Antd InputNumber](https://ant-design.gitee.io/components/input-number-cn/)
