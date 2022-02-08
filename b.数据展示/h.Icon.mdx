@@ -1,48 +1,41 @@
-# FormModal 表单弹窗
+# Icon 图标
 
-表单弹窗，让表格页面的内容在弹窗中显示。
+语义化的矢量图形。使用图标组件，你需要了解一些基本的用法：
 
 ## 使用场景
 
-- 在 Table 上使用，以进行快捷操作
+- 代替文本，形象化地表达内容
 
-- 跨模块调用另一个模块的编辑功能
+- 作为一种符号，给用户以暗示
 
 ## 示例
 
-```json
-{
-	"来源名称": {
-		"label": "来源",
-		"view": {
-			"type": "formModal",
-			"props": {
-				"type": "view",
-				"value": ":channel.name",
-				"formId": ":channel.id",
-				"formName": "channel"
-			}
-		}
-	}
-}
+<Notice type='warning'>
+	Icon组件在很多地方都可以使用，譬如table的自定义options，还有form的自定义actions等，注意，不同的命名方式，所使用的图标来源也会不同。
+</Notice>
+
+```tsx
+<Icon name='icon-download' size={18}></Icon>
 ```
 
 ## Props
 
 ```ts
+/** 图标组件，支持如下两种图标库：
+ * feather icon https://feathericons.com/
+ * material design icon https://fonts.google.com/icons
+ */
+
 interface IProps {
-	type?: 'view' | 'edit'
-	value: string
-	formId: string
-	formName: string
+	/** 图表样式类 */
+	className?: string
+	/** 图标名称，以`icon`开头为feather icon，以`outline/filled`结尾为material design icon */
+	name: string
+	/** 图标尺寸，单位px */
+	size?: number
+	/** 图标颜色，适用所有字体颜色 */
+	color?: string
+	/** 点击事件 */
+	onClick?: () => void
 }
 ```
-
-## API
-
-| 属性     | 说明        | 类型             | 默认值 | 必填 | 版本 |
-| -------- | ----------- | ---------------- | ------ | ---- | ---- |
-| type     | 表单类型    | 'view' \| 'edit' | -      | 否   |      |
-| value    | 文字        | string           | -      | 是   |      |
-| formId   | 表单关联 ID | string           | -      | 是   |      |
-| formName | 表单名称    | string           | -      | 是   |      |
