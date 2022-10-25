@@ -12,36 +12,21 @@
 
 ```json
 {
-	"name": "云厂商积分",
-	"width": 6,
-	"height": 4,
-	"type": "line",
-	"props": {
-		"height": "100%",
-		"x_key": "name",
-		"axisLabel": {
-			"interval": 0,
-			"rotate": 30,
-			"textStyle": {
-				"fontSize": 12
-			}
-		},
-		"series": [
-			{
-				"name": "score",
+	"收入_折线图": {
+		"bind": "income",
+		"link": "/x/Table/pet",
+		"view": {
+			"type": "Line",
+			"props": {
+				"cardStyle": { "padding": 0 },
 				"type": "line",
-				"smooth": true,
-				"symbolSize": 8,
-				"areaStyle": {},
-				"splitLine": {
-					"show": false
-				},
-				"axisLabel": {
-					"show": false
-				},
-				"color": "#7bf9af"
+				"chartHeight": 120,
+				"prefix": "¥",
+				"decimals": 2,
+				"nameKey": "date",
+				"valueKey": "value"
 			}
-		]
+		}
 	}
 }
 ```

@@ -13,12 +13,10 @@
 ```json
 {
 	"Label": {
-		"label": "图片",
+		"bind": "images",
 		"view": {
 			"type": "image",
-			"props": {
-				"value": ":avatar"
-			}
+			"props": {}
 		}
 	}
 }
@@ -27,15 +25,7 @@
 ## Props
 
 ```ts
-interface IProps extends ImageProps {
-	value: string | Array<string>
-}
+interface IProps extends ImageProps {}
 ```
-
-## API
-
-| 属性  | 说明 | 类型                      | 默认值 | 必填 | 版本 |
-| ----- | ---- | ------------------------- | ------ | ---- | ---- |
-| value | 图片路径 | string \| `Array<string>` | -      | 是   |      |
 
 其他属性见 [Antd Image](https://ant-design.gitee.io/components/image-cn/)

@@ -14,63 +14,34 @@
 
 ```json
 {
-	"name": "云厂商概览",
-	"width": 24,
-	"type": "lineBar",
-	"props": {
-		"height": 240,
-		"x_key": "name",
-		"axisLabel": {
-			"interval": 0,
-			"textStyle": {
-				"fontSize": 12
+	"综合消费": {
+		"bind": "datasource_cost",
+		"view": {
+			"type": "LineBar",
+			"props": {
+				"height": 240,
+				"nameKey": "name",
+				"axisLabel": { "interval": 0, "fontSize": 12 },
+				"series": [
+					{
+						"valueKey": "stay",
+						"type": "line",
+						"smooth": true,
+						"symbolSize": 8,
+						"itemStyle": { "borderRadius": 6 },
+						"splitLine": { "show": false },
+						"axisLabel": { "show": false }
+					},
+					{
+						"valueKey": "cost",
+						"type": "bar",
+						"itemStyle": { "borderRadius": 6 },
+						"splitLine": { "show": false },
+						"axisLabel": { "show": false }
+					}
+				]
 			}
-		},
-		"series": [
-			{
-				"name": "score",
-				"type": "bar",
-				"itemStyle": {
-					"borderRadius": 6
-				},
-				"splitLine": {
-					"show": false
-				},
-				"axisLabel": {
-					"show": false
-				}
-			},
-			{
-				"name": "usage",
-				"type": "line",
-				"smooth": true,
-				"symbolSize": 8,
-				"itemStyle": {
-					"borderRadius": 6
-				},
-				"splitLine": {
-					"show": false
-				},
-				"axisLabel": {
-					"show": false
-				}
-			},
-			{
-				"name": "rate",
-				"type": "line",
-				"smooth": true,
-				"symbolSize": 8,
-				"itemStyle": {
-					"borderRadius": 6
-				},
-				"splitLine": {
-					"show": false
-				},
-				"axisLabel": {
-					"show": false
-				}
-			}
-		]
+		}
 	}
 }
 ```

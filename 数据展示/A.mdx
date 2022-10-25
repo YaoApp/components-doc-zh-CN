@@ -17,12 +17,10 @@
 ```json
 {
 	"Link": {
-		"label": "外部链接",
+		"bind": ":link",
 		"view": {
-			"type": "a",
-			"props": {
-				"value": ":link"
-			}
+			"type": "A",
+			"props": {}
 		}
 	}
 }
@@ -35,14 +33,11 @@ interface IProps
 	extends React.DetailedHTMLProps<
 		React.AnchorHTMLAttributes<HTMLAnchorElement>,
 		HTMLAnchorElement
-	> {
-	value: string | undefined
-}
+	> {}
 ```
 
 ## API
 
-| 属性  | 说明 | 类型   | 默认值 | 必填 | 版本 |
-| ----- | ---- | ------ | ------ | ---- | ---- |
-| value | 文字 | string | -      | 是   |      |
-| href  | 链接 | string | -      | 否   |      |
+| 属性 | 说明 | 类型   | 默认值 | 必填 | 版本 |
+| ---- | ---- | ------ | ------ | ---- | ---- |
+| href | 链接 | string | -      | 否   |      |

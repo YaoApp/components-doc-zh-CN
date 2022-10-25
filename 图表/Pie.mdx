@@ -12,21 +12,25 @@
 
 ```json
 {
-	"name": "行业分布",
-	"width": 9,
-	"type": "pie",
-	"props": {
-		"x_key": "name",
-		"series": [
-			{
-				"name": "数量",
-				"type": "pie",
-				"roseType": "area",
-				"itemStyle": {
-					"borderRadius": 3
-				}
+	"类型排布": {
+		"bind": "datasource_type",
+		"link": "/x/Table/pet",
+		"view": {
+			"type": "Pie",
+			"props": {
+				"height": 240,
+				"nameKey": "type",
+				"series": [
+					{
+						"valueKey": "count",
+						"roseType": "area",
+						"radius": [10, 100],
+						"center": ["60%", "50%"],
+						"itemStyle": { "borderRadius": 6 }
+					}
+				]
 			}
-		]
+		}
 	}
 }
 ```

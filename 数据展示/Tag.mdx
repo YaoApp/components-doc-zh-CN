@@ -15,11 +15,10 @@
 ```json
 {
 	"状态": {
-		"label": "状态",
+		"bind": "status",
 		"view": {
-			"type": "tag",
+			"type": "Tag",
 			"props": {
-				"value": ":status",
 				"options": [
 					{
 						"label": "开启",
@@ -42,17 +41,30 @@
 
 ```ts
 interface IProps extends TagProps {
-	value: string | Array<{ label: string; color?: string }>
-	options: Array<{ label: string; value: string | number; color?: string }>
+	options: Array<Option>
+	remote?: Request
+	pure?: boolean
+}
+
+interface Option {
+	label: string
+	value: string
+	color?: string
+}
+
+interface Request {
+	api: string
+	params?: { [key: string]: Common.DynamicValue }
 }
 ```
 
 ## API
 
-| 属性    | 说明       | 类型                                        | 默认值 | 必填 | 版本 |
-| ------- | ---------- | ------------------------------------------- | ------ | ---- | ---- |
-| value   | 文字       | string \| `Array<string>` \| `Array<Value>` | -      | 是   |      |
-| options | 可能的选项 | `Array<Option>`                             | -      | 否   |      |
+| 属性    | 说明               | 类型            | 默认值 | 必填 | 版本 |
+| ------- | ------------------ | --------------- | ------ | ---- | ---- |
+| options | 可能的选项         | `Array<Option>` | -      | 否   |      |
+| remote  | 使用请求过来的数据 | `Request`       | -      | 否   |      |
+| pure    | 是否没有样式       | boolean         | -      | 否   |      |
 
 ### Value
 
