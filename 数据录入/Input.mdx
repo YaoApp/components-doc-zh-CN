@@ -13,13 +13,10 @@
 ```json
 {
 	"Input": {
-		"label": "Input",
+		"bind": "Input_value",
 		"edit": {
-			"type": "input",
-			"props": {
-				"value": ":group",
-				"placeholder": "请输入分组"
-			}
+			"type": "Input",
+			"props": {}
 		}
 	}
 }
@@ -28,15 +25,7 @@
 ## Props
 
 ```ts
-interface IProps extends InputProps {
-	value: string
-}
+interface IProps extends InputProps, Component.PropsEditComponent {}
 ```
-
-## API
-
-| 属性  | 说明   | 类型   | 默认值 | 必填 | 版本 |
-| ----- | ------ | ------ | ------ | ---- | ---- |
-| value | 绑定值 | string | -      | 是   |      |
 
 其他属性见 [Antd Input](https://ant-design.gitee.io/components/input-cn/)

@@ -13,13 +13,9 @@
 ```json
 {
 	"InputNumber": {
-		"label": "InputNumber",
+		"bind": "InputNumber_value",
 		"edit": {
-			"type": "inputNumber",
-			"props": {
-				"value": ":amount",
-				"placeholder": "请输入额度"
-			}
+			"props": {}
 		}
 	}
 }
@@ -28,15 +24,7 @@
 ## Props
 
 ```ts
-interface IProps extends InputNumberProps {
-	value: string
-}
+interface IProps extends InputNumberProps, Component.PropsEditComponent {}
 ```
-
-## API
-
-| 属性  | 说明     | 类型   | 默认值 | 必填 | 版本 |
-| ----- | -------- | ------ | ------ | ---- | ---- |
-| value | 绑定值   | string | -      | 是   |      |
 
 其他属性见 [Antd InputNumber](https://ant-design.gitee.io/components/input-number-cn/)

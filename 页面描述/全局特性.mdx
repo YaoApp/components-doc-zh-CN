@@ -7,15 +7,57 @@ interface Fields {
 	[key: string]: {
 		bind: string
 		view?: {
-                  bind?:string
+			bind?: string
 			type: string
 			props: any
 		}
 		edit?: {
-                  bind?:string
+			bind?: string
 			type: string
 			props: any
 		}
+	}
+}
+```
+
+## Remote
+
+```ts
+export declare namespace Remote {
+	interface IProps extends Component.PropsEditComponent {
+		xProps: {
+			remote?: Request
+			search?: Request & { key: string }
+		}
+	}
+}
+
+interface Request {
+	api: string
+	params?: { [key: string]: any }
+}
+```
+
+## Component
+
+```ts
+export declare namespace Component {
+	interface Props {
+		__namespace: string
+		__primary: string
+		__type: FormType
+		__bind: string
+		__name: string
+		__data_item: any
+	}
+
+	interface PropsEditComponent extends Props {
+		style?: CSSProperties
+		itemProps?: FormItemProps
+	}
+
+      interface PropsViewComponent extends Props {
+		__value: any
 	}
 }
 ```

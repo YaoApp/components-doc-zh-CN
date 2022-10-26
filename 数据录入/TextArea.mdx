@@ -15,11 +15,10 @@ TextArea，支持输入一段相当长的、不限格式的文本。
 ```json
 {
 	"TextArea": {
-		"label": "TextArea",
+		"bind": "TextArea_value",
 		"edit": {
-			"type": "textArea",
+			"type": "TextArea",
 			"props": {
-				"value": ":address",
 				"rows": 3
 			}
 		}
@@ -30,15 +29,7 @@ TextArea，支持输入一段相当长的、不限格式的文本。
 ## Props
 
 ```ts
-interface IProps extends TextAreaProps {
-	value: string
-}
+interface IProps extends TextAreaProps, Component.PropsEditComponent {}
 ```
-
-## API
-
-| 属性  | 说明     | 类型   | 默认值 | 必填 | 版本 |
-| ----- | -------- | ------ | ------ | ---- | ---- |
-| value | 绑定值   | string | -      | 是   |      |
 
 其他属性见 [Antd TextArea](https://ant-design.gitee.io/components/input-cn/#Input.TextArea)

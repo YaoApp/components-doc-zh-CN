@@ -13,12 +13,10 @@
 ```json
 {
 	"DatePicker": {
-		"label": "DatePicker",
+		"bind": "DatePicker_value",
 		"edit": {
-			"type": "datePicker",
-			"props": {
-				"value": ":expired_at"
-			}
+			"type": "DatePicker",
+			"props": {}
 		}
 	}
 }
@@ -27,17 +25,7 @@
 ## Props
 
 ```ts
-type IProps = DatePickerProps & {
-	value: string
-	format?: string
-}
+type IProps = DatePickerProps & Component.PropsEditComponent
 ```
-
-## API
-
-| 属性   | 说明   | 类型   | 默认值 | 必填 | 版本 |
-| ------ | ------ | ------ | ------ | ---- | ---- |
-| value  | 绑定值 | string | -      | 是   |      |
-| format | 格式   | string | -      | 否   |      |
 
 其他属性见 [Antd DatePicker](https://ant-design.gitee.io/components/datepicker-cn/)

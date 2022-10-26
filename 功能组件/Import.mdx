@@ -8,22 +8,11 @@
 	注意：导入仅在table页面的JSON中定义有效，数据导入的过程中支持对数据进行清洗。
 </Notice>
 
-tables/[*].json `list.actions`
-
 ```json
 {
-	"actions": {
-		"import": {
-			"props": {
-				"api": {
-					"setting": "/api/xiang/import/order/setting",
-					"mapping": "/api/xiang/import/order/mapping",
-					"mapping_setting": "/api/xiang/import/order/mapping/setting",
-					"preview": "/api/xiang/import/order/data",
-					"preview_setting": "/api/xiang/import/order/data/setting",
-					"import": "/api/xiang/import/order"
-				}
-			}
+	"header": {
+		"preset": {
+			"import": {}
 		}
 	}
 }
@@ -32,14 +21,19 @@ tables/[*].json `list.actions`
 ## Props
 
 ```ts
-export interface IProps {
-	api: {
-		setting: string
-		mapping: string
-		mapping_setting: string
-		preview: string
-		preview_setting: string
-		import: string
+interface Header {
+	preset: {
+		import?: {
+			api: {
+				setting: string
+				mapping: string
+				preview: string
+				import: string
+				mapping_setting_model: string
+				preview_setting_model: string
+			}
+			operation: Array<any>
+		}
 	}
 }
 ```

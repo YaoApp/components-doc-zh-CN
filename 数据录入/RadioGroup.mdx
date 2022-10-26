@@ -13,11 +13,10 @@
 ```json
 {
 	"RadioGroup": {
-		"label": "RadioGroup",
+		"bind": "RadioGroup_value",
 		"edit": {
-			"type": "radioGroup",
+			"type": "RadioGroup",
 			"props": {
-				"value": ":radioGroup",
 				"options": [
 					{
 						"label": "Apple",
@@ -41,36 +40,7 @@
 ## Props
 
 ```ts
-interface Option {
-	label: string
-	value: string
-	disabled?: boolean
-}
-
-interface IProps extends TreeProps {
-	options: array<Option>
-	remote: {
-		api: string
-		query: {
-			select: Array<string>
-		}
-	}
-}
+interface IProps extends RadioGroupProps, Component.PropsEditComponent {}
 ```
-
-## API
-
-| 属性    | 说明         | 类型              | 默认值 | 必填 | 版本 |
-| ------- | ------------ | ----------------- | ------ | ---- | ---- |
-| value   | 绑定值       | string            | -      | 是   |      |
-| options | 选项列表     | IProps['options'] | -      | 否   |      |
-| remote  | 远程选项列表 | [Remote](#Remote) | -      | 否   |      |
-
-### Remote
-
-| 属性  | 说明 | 类型                      | 必填 |
-| ----- | ---- | ------------------------- | ---- |
-| api   | 接口 | string                    | 是   |
-| query | 接口 | IProps['remote']['query'] | 否   |
 
 其他属性见 [Antd RadioGroup](https://ant-design.gitee.io/components/radio-cn/#RadioGroup)

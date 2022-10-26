@@ -13,15 +13,16 @@
 ```json
 {
 	"Mentions": {
-		"label": "Mentions",
+		"bind": "Mentions_value",
 		"edit": {
-			"type": "mentions",
+			"type": "Mentions",
 			"props": {
-				"value": ":manu_id",
 				"autoSize": true,
-				"search": {
-					"api": "/api/select/search",
-					"key": "keyword"
+				"xProps": {
+					"search": {
+						"api": "/api/select/search",
+						"key": "keyword"
+					}
 				}
 			}
 		}
@@ -34,55 +35,7 @@
 <Notice type='success'>Mentions组件的大部分Api和Select组件一样。</Notice>
 
 ```ts
-interface IProps extends MentionProps {
-	value: string
-	string?: '1' | '0' | undefined
-	options?: Array<{ label: string; value: string | number }>
-	remote?: {
-		api: string
-		query: {
-			// 是否使用value作为query参数
-			useValue?: boolean
-			// 选择需要返回的字段
-			select?: Array<string>
-		}
-	}
-	search?: {
-		api: string
-		key: string
-	}
-}
+interface IProps extends Remote.IProps, MentionProps {}
 ```
-
-## API
-
-| 属性    | 说明                     | 类型                     | 默认值 | 必填 | 版本 |
-| ------- | ------------------------ | ------------------------ | ------ | ---- | ---- |
-| value   | 绑定值                   | string                   | -      | 是   |      |
-| string  | 是否转换 value 为 string | string                   | -      | 否   |      |
-| options | 选项列表                 | Array<[Option](#Option)> | -      | 否   |      |
-| remote  | 远程选项列表             | [Remote](#Remote)        | -      | 否   |      |
-| search  | 远程搜索                 | [Search](#Search)        | -      | 否   |      |
-
-### Option
-
-| 属性  | 说明 | 类型             | 必填 |
-| ----- | ---- | ---------------- | ---- |
-| label | 文字 | string           | 是   |
-| value | 值   | string \| number | 是   |
-
-### Remote
-
-| 属性  | 说明 | 类型                | 必填 |
-| ----- | ---- | ------------------- | ---- |
-| api   | 接口 | string              | 是   |
-| query | 接口 | IProps.remote.query | 否   |
-
-### Search
-
-| 属性 | 说明           | 类型   | 必填 |
-| ---- | -------------- | ------ | ---- |
-| api  | 接口           | string | 是   |
-| key  | 查询参数的 key | string | 是   |
 
 其他属性见 [Antd Mentions](https://ant-design.gitee.io/components/mentions-cn/)

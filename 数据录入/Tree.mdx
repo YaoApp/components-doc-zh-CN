@@ -15,16 +15,17 @@
 ```json
 {
 	"Tree": {
-		"label": "Tree",
+		"bind": "Tree_value",
 		"edit": {
-			"type": "tree",
+			"type": "Tree",
 			"props": {
-				"value": ":tree",
 				"checkable": true,
-				"remote": {
-					"api": "/api/tree/search",
-					"query": {
-						"select": ["id", "name"]
+				"xProps": {
+					"remote": {
+						"api": "/api/tree/search",
+						"search": {
+							"select": ["id", "name"]
+						}
 					}
 				}
 			}
@@ -36,38 +37,7 @@
 ## Props
 
 ```ts
-interface Option {
-	key: string
-	title: string
-	children: Array<Option>
-	disabled?: boolean
-	selectable?: boolean
-}
-
-interface IProps extends TreeProps {
-	options: array<Option>
-	remote: {
-		api: string
-		query: {
-			select: Array<string>
-		}
-	}
-}
+interface IProps extends TreeProps, Component.PropsEditComponent {}
 ```
-
-## API
-
-| 属性    | 说明         | 类型              | 默认值 | 必填 | 版本 |
-| ------- | ------------ | ----------------- | ------ | ---- | ---- |
-| value   | 绑定值       | string            | -      | 是   |      |
-| options | 选项列表     | IProps['options'] | -      | 否   |      |
-| remote  | 远程选项列表 | [Remote](#Remote) | -      | 否   |      |
-
-### Remote
-
-| 属性  | 说明 | 类型                      | 必填 |
-| ----- | ---- | ------------------------- | ---- |
-| api   | 接口 | string                    | 是   |
-| query | 接口 | IProps['remote']['query'] | 否   |
 
 其他属性见 [Antd Tree](https://ant-design.gitee.io/components/tree-cn/)

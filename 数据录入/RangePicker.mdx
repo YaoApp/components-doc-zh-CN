@@ -15,10 +15,9 @@
 ```json
 {
 	"RangePicker": {
-		"label": "RangePicker",
 		"bind": "range",
 		"input": {
-			"type": "rangePicker",
+			"type": "RangePicker",
 			"props": {
 				"placeholder": ["开始时间", "结束时间"]
 			}
@@ -30,15 +29,7 @@
 ## Props
 
 ```ts
-interface IProps extends TimeRangePickerProps {
-	value: string
-}
+type IProps = TimeRangePickerProps & Component.PropsEditComponent & {}
 ```
-
-## API
-
-| 属性  | 说明   | 类型   | 默认值 | 必填 | 版本 |
-| ----- | ------ | ------ | ------ | ---- | ---- |
-| value | 绑定值 | string | -      | 是   |      |
 
 其他属性见 [Antd RangePicker](https://ant-design.gitee.io/components/date-picker-cn/#RangePicker)
