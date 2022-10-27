@@ -38,21 +38,7 @@
 ## Props
 
 ```ts
-interface Option {
-	value: string | number
-	label?: React.ReactNode
-	disabled?: boolean
-	children?: Array<Option>
-}
-
-type IProps = Remote.IProps & CascaderProps<any> & {}
+interface IProps extends Remote.IProps, CascaderProps<any> {}
 ```
-
-## API
-
-| 属性    | 说明         | 类型              | 默认值 | 必填 | 版本 |
-| ------- | ------------ | ----------------- | ------ | ---- | ---- |
-| value   | 绑定值       | string            | -      | 是   |      |
-| options | 选项列表     | IProps['options'] | -      | 否   |      |
 
 其他属性见 [Antd Cascader](https://ant-design.gitee.io/components/cascader-cn/)
