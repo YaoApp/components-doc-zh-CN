@@ -32,11 +32,13 @@ interface Header {
 				mapping_setting_model: string
 				preview_setting_model: string
 			}
-			operation: Array<any>
+			actions: Actions
 		}
 	}
 }
 ```
+
+<Notice type='warning'>注意：导入的Actions仅可使用`Common.historyPush`。</Notice>
 
 ## API
 
