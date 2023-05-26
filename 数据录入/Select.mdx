@@ -12,25 +12,22 @@
 
 ```json
 {
-	"Select": {
-		"bind": "Select_value",
-		"edit": {
-			"type": "Select",
-			"props": {
-				"tree": true,
-				"searchable": true,
-				"xProps": {
-					"remote": {
-						"api": "/api/kind/tree",
-						"search": {
-							"select": ["id", "name"],
-							"keyword": "where_name_like"
-						}
-					}
-				}
-			}
-		}
-	}
+  "Select": {
+    "bind": "Select_value",
+    "edit": {
+      "type": "Select",
+      "props": {
+        "tree": true,
+        "searchable": true,
+        "xProps": {
+          "$remote": {
+            "process": "scripts.select.Tree",
+            "query": {}
+          }
+        }
+      }
+    }
+  }
 }
 ```
 

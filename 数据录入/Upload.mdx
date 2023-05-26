@@ -14,25 +14,30 @@
 
 ```json
 {
-	"Upload": {
-		"bind": "Upload_value",
-		"edit": {
-			"type": "Upload",
-			"props": {
-				"filetype": "image",
-				"multiple": true,
-				"maxCount": 2
-			}
-		}
-	}
+  "Upload": {
+    "bind": "Upload_value",
+    "edit": {
+      "type": "Upload",
+      "compute": "Upload",
+      "props": {
+        "multiple": true,
+        "maxCount": 3,
+        "filetype": "image",
+        "$api": { "process": "fs.system.Upload" }
+      }
+    }
+  }
 }
 ```
 
 ## Props
 
 ```ts
-interface IProps extends UploadProps, Component.PropsEditComponent, CommonProps {
-	api: string
+interface IProps
+  extends UploadProps,
+    Component.PropsEditComponent,
+    CommonProps {
+  api: string;
 }
 ```
 
